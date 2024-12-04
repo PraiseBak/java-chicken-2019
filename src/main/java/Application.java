@@ -3,6 +3,7 @@ import domain.MenuRepository;
 import domain.Table;
 import domain.TableRepository;
 import dto.OrderRequest;
+import exception.PosException;
 import repository.PosRepository;
 import service.PosService;
 import view.InputView;
@@ -33,8 +34,38 @@ public class Application {
     }
 
     private static void calculate() {
-        int tableIdx = selectTable();
+        int tableIdx = calculateSummery();
+        pay(tableIdx);
+    }
 
+    private static void pay(int tableIdx) {
+        while (true){
+            try {
+                int payMethod = InputView.inputPayMethod(tableIdx);
+                String payResult = posController.pay(payMethod,tableIdx);
+                OutputView.println(payResult);
+                return;
+            }catch (PosException e){
+                OutputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private static int calculateSummery() {
+        while (true){
+            try {
+                int tableIdx = selectTable();
+                posController.checkCalculateTableIdx(tableIdx);
+                calculateSummery(tableIdx);
+                return tableIdx;
+            }catch (PosException e){
+                OutputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private static void calculateSummery(int tableIdx) {
+        OutputView.println(posController.getCalculateSummery());
     }
 
     /**

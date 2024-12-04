@@ -14,6 +14,8 @@ public class OutputView {
     private static final String BOTTOM_LINE = "└ ─ ┘";
     private static final String INPUT_TABLE_NUMBER = "## 주문할 테이블을 선택하세요.";
     private static final String INPUT_MENUS_IDX = "## 등록할 메뉴를 선택하세요.";
+    private static String INPUT_PAY_METHOD = "## %d번 테이블의 결제를 진행합니다.\n## 신용 카드는 1번, 현금은 2번";
+
 
     public static void printTables(final List<Table> tables) {
         System.out.println("## 테이블 목록");
@@ -57,6 +59,11 @@ public class OutputView {
 
     public static void printMenusIdx() {
         println(INPUT_MENUS_IDX);
+
+    }
+
+    public static void printPayMethod(int tableIdx) {
+        println(String.format(INPUT_PAY_METHOD,tableIdx));
 
     }
 }

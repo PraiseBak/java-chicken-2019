@@ -66,4 +66,13 @@ public class InputView {
     private static void validateMenusIdx() {
 
     }
+
+    public static int inputPayMethod(int tableIdx) {
+        OutputView.printPayMethod(tableIdx);
+        String s = readLine();
+        if(!NumberUtility.isNumber(s)){
+            throw new PosException(INVALID_MENUS_IDX);
+        }
+        return Integer.parseInt(s);
+    }
 }
