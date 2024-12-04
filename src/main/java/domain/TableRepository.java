@@ -20,7 +20,15 @@ public class TableRepository {
 
     public static List<Table> tables() {
         return Collections.unmodifiableList(tables);
+    }
 
+    public static void tableUpdate(int tableIdx,boolean isOrderExists){
+        for(Table table : tables){
+            if(table.isSame(tableIdx)){
+                table.setIsOrderExists(isOrderExists);
+                return;
+            }
+        }
     }
 
     public static void validateTable(int idx){
@@ -30,5 +38,14 @@ public class TableRepository {
             }
         }
         throw new PosException(INVALID_TABLE_INDEX);
+    }
+
+    public static boolean isExists(int tableIdx) {
+        for(Table table : tables){
+            if(table.isSame(tableIdx)){
+                return true;
+            }
+        }
+        return false;
     }
 }

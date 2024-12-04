@@ -19,6 +19,7 @@ public class PosController {
 
     public void orderRequest(OrderRequest orderRequest) {
         posService.order(orderRequest);
+        TableRepository.tableUpdate(orderRequest.getTableNumber(),true);
     }
 
     public String getCalculateSummery() {
@@ -30,6 +31,7 @@ public class PosController {
          콜라 1 1000
 
          */
+        return "";
     }
 
     /**
@@ -41,5 +43,10 @@ public class PosController {
     }
 
     public String pay(int payMethod, int tableIdx) {
+        return "";
+    }
+
+    public String getOrderResult(int tableIdx) {
+        return posService.orderResult(tableIdx);
     }
 }

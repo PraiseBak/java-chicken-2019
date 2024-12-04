@@ -124,6 +124,7 @@ public class Application {
                 OutputView.printTables(tables);
                 int tableNumber = InputView.inputTableNumber();
                 posController.checkTableIdx(tableNumber);
+                return tableNumber;
             }catch (IllegalArgumentException e){
                 OutputView.printError(e.getMessage());
 

@@ -1,11 +1,13 @@
 package domain;
 
+import exception.PosException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class MenuRepository {
     private static final List<Menu> menus = new ArrayList<>();
+    private static final String INVALID_MENU = "존재하지 않는 메뉴입니다.";
 
     static {
         menus.add(new Menu(1, "후라이드", Category.CHICKEN, 16_000));
@@ -20,5 +22,14 @@ public class MenuRepository {
 
     public static List<Menu> menus() {
         return Collections.unmodifiableList(menus);
+    }
+
+    public static Menu getMenu(int menusIdx) {
+        for(Menu menu : menus){
+            if(menu.isSame(menusIdx)){
+                return menu;
+            }
+        }
+        throw new PosException(INVALID_MENU);
     }
 }

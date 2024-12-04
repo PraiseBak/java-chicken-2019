@@ -15,6 +15,7 @@ public class OutputView {
     private static final String INPUT_TABLE_NUMBER = "## 주문할 테이블을 선택하세요.";
     private static final String INPUT_MENUS_IDX = "## 등록할 메뉴를 선택하세요.";
     private static String INPUT_PAY_METHOD = "## %d번 테이블의 결제를 진행합니다.\n## 신용 카드는 1번, 현금은 2번";
+    private static final String BOTTOM_EXISTS_LINE = "└ # ┘";
 
 
     public static void printTables(final List<Table> tables) {
@@ -22,7 +23,19 @@ public class OutputView {
         final int size = tables.size();
         printLine(TOP_LINE, size);
         printTableNumbers(tables);
-        printLine(BOTTOM_LINE, size);
+        printBottomLine(tables);
+    }
+
+    private static void printBottomLine(List<Table> tables) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(Table table : tables){
+            if(table.isExistsOrder()){
+                stringBuilder.append(BOTTOM_EXISTS_LINE);
+                continue;
+            }
+            stringBuilder.append(BOTTOM_LINE);
+        }
+        OutputView.println(stringBuilder.toString());
     }
 
     public static void printMenus(final List<Menu> menus) {

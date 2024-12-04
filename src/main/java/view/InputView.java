@@ -6,7 +6,10 @@ import utility.NumberUtility;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final String INPUT_METHOD = "## 원하는 기능을 선택하세요.";
+    private static final String INPUT_METHOD = "## 메인화면\n"
+            + "1 - 주문등록\n"
+            + "2 - 결제하기\n"
+            + "3 - 프로그램 종료\n\n## 원하는 기능을 선택하세요.\n";
     private static final String INVALID_METHOD = "유효하지 않은 기능 선택입니다.";
     private static final String INVALID_TABLE_NUMBER = "유효하지 않은 테이블 숫자입니다.";
     private static final String INVALID_MENUS_IDX = "유효하지않은 메뉴 숫자입니다.";
@@ -16,11 +19,11 @@ public class InputView {
 
     public static int inputTableNumber() {
         OutputView.printInputTableNumber();
-        String tableNumber =readLine();
+        String tableNumber = readLine();
         if(!NumberUtility.isNumber(tableNumber)){
             throw new PosException(INVALID_TABLE_NUMBER);
         }
-        return Integer.parseInt(readLine());
+        return Integer.parseInt(tableNumber);
     }
 
     public static int inputMethod() {
