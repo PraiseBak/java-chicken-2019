@@ -6,9 +6,14 @@ import domain.Table;
 import java.util.List;
 
 public class OutputView {
+
+
+    private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String TOP_LINE = "┌ ─ ┐";
     private static final String TABLE_FORMAT = "| %s |";
     private static final String BOTTOM_LINE = "└ ─ ┘";
+    private static final String INPUT_TABLE_NUMBER = "## 주문할 테이블을 선택하세요.";
+    private static final String INPUT_MENUS_IDX = "## 등록할 메뉴를 선택하세요.";
 
     public static void printTables(final List<Table> tables) {
         System.out.println("## 테이블 목록");
@@ -36,5 +41,22 @@ public class OutputView {
             System.out.printf(TABLE_FORMAT, table);
         }
         System.out.println();
+    }
+
+    public static void printError(String message) {
+        println(ERROR_PREFIX + message);
+    }
+
+    public static void println(String message) {
+        System.out.println(message);
+    }
+
+    public static void printInputTableNumber() {
+        println(INPUT_TABLE_NUMBER);
+    }
+
+    public static void printMenusIdx() {
+        println(INPUT_MENUS_IDX);
+
     }
 }
