@@ -32,4 +32,14 @@ public class MenuRepository {
         }
         throw new PosException(INVALID_MENU);
     }
+
+
+    public static void validateMenusIdx(int menusIdx) {
+        for(Menu menu : menus){
+            if(menu.isSame(menusIdx)){
+                return;
+            }
+        }
+        throw new PosException(INVALID_MENU);
+    }
 }

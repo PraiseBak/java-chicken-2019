@@ -37,7 +37,14 @@ public class OrderManager {
         return OrderFormatter.getOrderResult(orders);
     }
 
-    private void OrderFormatter(int tableIdx, List<Order> orders) {
+    public boolean isExistsOrderInTable(int tableIdx) {
+        return !orderMap.get(tableIdx).isEmpty();
+    }
 
+    public String payCalculate(int tableIdx, int payMethod) {
+        List<Order> orders = orderMap.get(tableIdx);
+        TableRepository.tableUpdate(tableIdx,false);
+        orderMap.put(tableIdx,new ArrayList<>());
+        return OrderFormatter.getFormattedPayCalculate(orders,payMethod);
     }
 }

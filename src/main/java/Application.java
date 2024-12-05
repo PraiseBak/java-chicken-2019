@@ -56,7 +56,7 @@ public class Application {
             try {
                 int tableIdx = selectTable();
                 posController.checkCalculateTableIdx(tableIdx);
-                calculateSummery(tableIdx);
+                showCalculateSummery(tableIdx);
                 return tableIdx;
             }catch (PosException e){
                 OutputView.printError(e.getMessage());
@@ -64,8 +64,8 @@ public class Application {
         }
     }
 
-    private static void calculateSummery(int tableIdx) {
-        OutputView.println(posController.getCalculateSummery());
+    private static void showCalculateSummery(int tableIdx) {
+        OutputView.println(posController.getOrderResult(tableIdx));
     }
 
     /**
@@ -109,7 +109,7 @@ public class Application {
                 final List<Menu> menus = MenuRepository.menus();
                 OutputView.printMenus(menus);
                 final int menusIdx = InputView.inputMenusIdx();
-                posController.checkMenusIdx();
+                posController.checkMenusIdx(menusIdx);
                 return menusIdx;
             }catch (IllegalArgumentException e){
                 OutputView.printError(e.getMessage());

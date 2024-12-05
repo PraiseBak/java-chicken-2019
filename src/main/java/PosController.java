@@ -13,7 +13,8 @@ public class PosController {
         TableRepository.validateTable(tableNumber);
     }
 
-    public void checkMenusIdx() {
+    public void checkMenusIdx(int menusIdx) {
+        posService.checkMenusIdx(menusIdx);
 
     }
 
@@ -22,28 +23,16 @@ public class PosController {
         TableRepository.tableUpdate(orderRequest.getTableNumber(),true);
     }
 
-    public String getCalculateSummery() {
-        /**
-         *
-         ## 주문 내역
-         메뉴 수량 금액
-         후라이드 1 16000
-         콜라 1 1000
-
-         */
-        return "";
-    }
-
     /**
      * 계산 걸려있는지
      * @param tableIdx
      */
     public void checkCalculateTableIdx(int tableIdx) {
-
+        posService.checkCalculateTableIdx(tableIdx);
     }
 
     public String pay(int payMethod, int tableIdx) {
-        return "";
+        return posService.payResult(payMethod,tableIdx);
     }
 
     public String getOrderResult(int tableIdx) {

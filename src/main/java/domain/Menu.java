@@ -7,7 +7,8 @@ public class Menu {
     private final String name;
     private final Category category;
     private final int price;
-    private String INVALID_MENU = "유효하지 않은 메뉴입니다.";
+    private final int DISCOUNT_PRICE = 10000;
+    private final String INVALID_MENU = "유효하지 않은 메뉴입니다.";
 
     public Menu(final int number, final String name, final Category category, final int price) {
         validateMenu(number,name,price);
@@ -41,5 +42,17 @@ public class Menu {
 
     public int getPrice(){
         return price;
+    }
+
+    public int getPriceSum(int buyCount){
+        return price * buyCount;
+    }
+
+    public boolean isDiscount(int buyCount) {
+        return buyCount >= 10 && category == Category.CHICKEN;
+    }
+
+    public int getDiscountMoney(int buyCount) {
+        return DISCOUNT_PRICE * (buyCount % 10);
     }
 }

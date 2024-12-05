@@ -26,9 +26,17 @@ public class Order {
         }
     }
 
+    public int getDiscountApplyMoney(){
+        int sum = buyCount * menu.getPrice();
+        if(menu.isDiscount(buyCount)){
+            sum -= menu.getDiscountMoney(buyCount);
+        }
+        return sum;
+    }
+
     @Override
     public String toString() {
-        return String.format(ORDER_RESULT_FORMAT,menu.getName(),buyCount,menu.getPrice());
+        return String.format(ORDER_RESULT_FORMAT,menu.getName(),buyCount,menu.getPriceSum(buyCount));
     }
 
 }
